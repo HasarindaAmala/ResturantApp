@@ -10,7 +10,7 @@ class MenuTileWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height*0.1,
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage("asserts/menuCover.png"),opacity: 0.5),
+        image: DecorationImage(image: AssetImage("asserts/MenuCover.png"),opacity: 0.5),
         color: Color(0xFF1CAE81),
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(

@@ -12,6 +12,7 @@ part 'menu_state.dart';
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   MenuBloc() : super(MenuInitial()) {
     on<MenuInitialEvent>(homeInitialEvent);
+    on<MenuClickedEvent>(menuClickedEvent);
   }
 
   FutureOr<void> homeInitialEvent(MenuInitialEvent event, Emitter<MenuState> emit) {
@@ -25,9 +26,14 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
               Title: e['Title']['en'],
               SubTitle: e['SubTitle'],
               Description: e['Description'],
+              CategoryId: e['MenuCategoryIDs']
             ),
         ).toList(),
 
     ));
+  }
+
+  FutureOr<void> menuClickedEvent(MenuClickedEvent event, Emitter<MenuState> emit) {
+    emit(MenuNavigateToCategoryActionState());
   }
 }

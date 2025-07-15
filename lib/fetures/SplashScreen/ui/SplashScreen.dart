@@ -66,26 +66,7 @@ class _SplashScreenState extends State<SplashScreen> with  TickerProviderStateMi
                   ),
                 ),
               );
-            case SplashLoadingSuccessState:
-              return Scaffold(
-                backgroundColor: Colors.white,
-                body: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: Image(image: AssetImage("asserts/logo.jpg"))),
-                      SizedBox(
-                          width: 200,
-                          height: 50,
-                          child: Image(image: AssetImage("asserts/name.png"))),
-                    ],
-                  ),
-                ),
-              );
+
             default:
               return SizedBox();
           }

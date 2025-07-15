@@ -18,8 +18,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }
 
   Future<void> loadingAnimationDoneActionEvent(LoadingAnimationDoneActionEvent event, Emitter<SplashState> emit) async {
-    emit(SplashLoadingSuccessState());
-    await Future.delayed(Duration(seconds: 2));
     emit(SplashScreenDoneState());
 
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_project_interview/fetures/Menu/bloc/menu_bloc.dart';
 
+import '../../Category/ui/CategoryScreen.dart';
 import 'menu_tile_widget.dart';
 
 class MenuPage extends StatefulWidget {
@@ -13,6 +14,8 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   final MenuBloc menuBloc = MenuBloc();
+   String menuTitle = "";
+   String menuID = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -30,9 +33,12 @@ class _MenuPageState extends State<MenuPage> {
       listenWhen: (previous, current) => current is MenuActionState,
       buildWhen: (previous, current) => current is! MenuActionState,
       listener: (context, state) {
-        // TODO: implement listener
+        if(state is MenuNavigateToCategoryActionState){
+          Navigator.push(context,MaterialPageRoute(builder: (context) => Category(menuName: menuTitle,menuID: menuID,)));
+        }
       },
       builder: (context, state) {
+
         if (state is MenuLoadingSuccessState) {
           final MenuSuccessState = state;
           return Scaffold(
@@ -105,8 +111,15 @@ class _MenuPageState extends State<MenuPage> {
                   child: ListView.builder(
                     itemCount: MenuSuccessState.menu.length,
                     itemBuilder: (context, index) {
-                      return MenuTileWidget(
-                        menuDataModel: MenuSuccessState.menu[index],
+                      return GestureDetector(
+                        onTap: (){
+                          menuID = MenuSuccessState.menu[index].CategoryId.first;
+                          menuTitle = MenuSuccessState.menu[index].Title;
+                          menuBloc.add(MenuClickedEvent());
+                        },
+                        child: MenuTileWidget(
+                          menuDataModel: MenuSuccessState.menu[index],
+                        ),
                       );
                     },
                   ),

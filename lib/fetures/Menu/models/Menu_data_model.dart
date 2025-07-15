@@ -8,6 +8,7 @@ class MenuDataModel{
   final String Title;
   final String? SubTitle;
   final String? Description;
+  final List<String> CategoryId;
   MenuDataModel({
     required this.Id,
     required this.MenuId,
@@ -16,6 +17,7 @@ class MenuDataModel{
     required this.Title,
     required this.SubTitle,
     required this.Description,
+    required this.CategoryId,
 });
 
 
